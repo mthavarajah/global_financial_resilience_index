@@ -7,20 +7,35 @@ def app():
     st.title("🌍 GFRI Map View")
 
     df = pd.read_csv("datasets/merged_data.csv")
-
     df = df.dropna(subset=["Lat", "Lon"])
 
-    metric = st.selectbox("Select Metric", ["GDP", "HDI", "Internet", "Agri", "Poverty"])
-    year = st.slider("Select Year", int(df['Year'].min()), int(df['Year'].max()), int(df['Year'].max()))
+    metric_labels = {
+        "GDP per Capita": "GDP",
+        "HDI": "HDI",
+        "Internet": "Internet",
+        "Agriculture": "Agri",
+        "Poverty": "Poverty"
+    }
+
+    selected_label = st.selectbox("Select Metric", list(metric_labels.keys()))
+
+    metric = metric_labels[selected_label]
+
+    year = st.slider(
+        "Select Year",
+        int(df["Year"].min()),
+        int(df["Year"].max()),
+        int(df["Year"].max())
+    )
 
     df_year = df[df["Year"] == year]
 
-    m = folium.Map(location=[20,0], zoom_start=2, tiles="CartoDB dark_matter")
+    m = folium.Map(location=[20, 0], zoom_start=2, tiles="CartoDB dark_matter")
     for _, row in df_year.iterrows():
         folium.CircleMarker(
             location=[row["Lat"], row["Lon"]],
             radius=4,
-            popup=f"{row['Entity']}: {metric} = {row[metric]}",
+            popup=f"{row['Entity']}: {selected_label} = {row[metric]}",
             color="#C2C2C2",
             fill=True,
             fill_color="#C2C2C2",

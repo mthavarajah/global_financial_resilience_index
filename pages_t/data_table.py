@@ -16,16 +16,31 @@ def app():
 
     df = pd.read_csv("datasets/merged_data.csv")
 
+    metric_labels = {
+        "GDP per Capita": "GDP",
+        "Human Development Index": "HDI",
+        "Internet": "Internet",
+        "Agriculture": "Agri",
+        "Poverty": "Poverty"
+    }
+
     countries = st.multiselect("Select Countries", df['Entity'].unique(), 
                                default=["Canada", "United States"])
-    metric = st.selectbox("Select Metric", ["GDP", "HDI", "Internet", "Agri", "Poverty"])
-    years = st.slider("Select Year Range",
-                      int(df['Year'].min()), int(df['Year'].max()),
-                      (int(df['Year'].min()), int(df['Year'].max())))
+    selected_label = st.selectbox("Select Metric", list(metric_labels.keys()))
+    metric = metric_labels[selected_label]
 
-    df_filtered = df[(df['Entity'].isin(countries)) & 
-                     (df['Year'] >= years[0]) & 
-                     (df['Year'] <= years[1])]
+    years = st.slider(
+        "Select Year Range",
+        int(df['Year'].min()),
+        int(df['Year'].max()),
+        (int(df['Year'].min()), int(df['Year'].max()))
+    )
+
+    df_filtered = df[
+        (df['Entity'].isin(countries)) & 
+        (df['Year'] >= years[0]) & 
+        (df['Year'] <= years[1])
+    ]
 
     summary_list = []
     for country in countries:
@@ -66,7 +81,6 @@ def app():
     numeric_cols = summary_df.select_dtypes(include=np.number).columns
     summary_df[numeric_cols] = summary_df[numeric_cols].round(3)
 
-    # Display data table
     st.dataframe(summary_df)
 
 if __name__ == "__main__":

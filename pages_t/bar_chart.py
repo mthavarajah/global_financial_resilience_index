@@ -7,12 +7,31 @@ def app():
 
     df = pd.read_csv("datasets/merged_data.csv")
 
-    year = st.slider("Select Year", int(df['Year'].min()), int(df['Year'].max()), int(df['Year'].min()))
+    metric_labels = {
+        "GDP per Capita": "GDP",
+        "Human Development Index": "HDI",
+        "Internet": "Internet",
+        "Agriculture": "Agri",
+        "Poverty": "Poverty"
+    }
+
+    year = st.slider(
+        "Select Year",
+        int(df['Year'].min()),
+        int(df['Year'].max()),
+        int(df['Year'].min())
+    )
     countries = st.multiselect("Select Countries", df['Entity'].unique(), default=["Canada", "United States"])
-    metric = st.selectbox("Select Metric", ["GDP", "HDI", "Internet", "Agri", "Poverty"])
+    selected_label = st.selectbox("Select Metric", list(metric_labels.keys()))
+    metric = metric_labels[selected_label]
 
     df_filtered = df[(df['Entity'].isin(countries)) & (df['Year'] == year)]
 
-    fig = px.bar(df_filtered, x='Entity', y=metric, color=metric,
-                 title=f"{metric} by Country in {year}")
+    fig = px.bar(
+        df_filtered,
+        x='Entity',
+        y=metric,
+        color=metric,
+        title=f"{selected_label} by Country in {year}"
+    )
     st.plotly_chart(fig, use_container_width=True)
