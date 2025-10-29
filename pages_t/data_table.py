@@ -19,8 +19,8 @@ def app():
     metric_labels = {
         "GDP per Capita": "GDP",
         "Human Development Index": "HDI",
-        "Internet": "Internet",
-        "Agriculture": "Agri",
+        "Internet Usage by Population (%)": "Internet",
+        "Employment in Agriculture (%)": "Agri",
     }
 
     countries = st.multiselect("Select Countries", df['Entity'].unique(), 
