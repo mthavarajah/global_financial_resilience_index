@@ -23,8 +23,12 @@ def app():
         "Employment in Agriculture (%)": "Agri",
     }
 
-    countries = st.multiselect("Select Countries", df['Entity'].unique(), 
-                               default=["Canada", "United States"])
+    countries = st.multiselect(
+        "Select Countries", 
+        df['Entity'].unique(), 
+        default=["Canada", "United States"]
+    )
+
     selected_label = st.selectbox("Select Metric", list(metric_labels.keys()))
     metric = metric_labels[selected_label]
 
@@ -79,6 +83,8 @@ def app():
 
     numeric_cols = summary_df.select_dtypes(include=np.number).columns
     summary_df[numeric_cols] = summary_df[numeric_cols].round(3)
+
+    summary_df.index = np.arange(1, len(summary_df) + 1)
 
     st.dataframe(summary_df)
 

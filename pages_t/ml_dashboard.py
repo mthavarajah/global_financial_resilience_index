@@ -52,3 +52,21 @@ def app():
         text="Predicted_FRI"
     )
     st.plotly_chart(fig, use_container_width=True)
+
+    st.subheader("Feature Correlation Treemap")
+
+    fig_tree = px.treemap(
+        df_input,
+        path=["Entity"],
+        values="Predicted_FRI",
+        color="Predicted_FRI",
+        color_continuous_scale="RdYlGn",
+    )
+
+    # Make labels cleaner
+    fig_tree.update_traces(
+        textinfo="label+value",
+        hovertemplate="<b>%{label}</b><br>FRI: %{value}<extra></extra>"
+    )
+
+    st.plotly_chart(fig_tree, use_container_width=True)
