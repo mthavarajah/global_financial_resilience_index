@@ -12,7 +12,6 @@ def app():
         "Human Development Index": "HDI",
         "Internet": "Internet",
         "Agriculture": "Agri",
-        "Poverty": "Poverty"
     }
 
     year = st.slider(

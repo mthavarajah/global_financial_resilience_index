@@ -12,7 +12,6 @@ def app():
         "Human Development Index": "HDI",
         "Internet": "Internet",
         "Agriculture": "Agri",
-        "Poverty": "Poverty"
     }
 
     countries = st.multiselect("Select Countries", df['Entity'].unique(), default=["Canada", "United States"])

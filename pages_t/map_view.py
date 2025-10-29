@@ -11,10 +11,9 @@ def app():
 
     metric_labels = {
         "GDP per Capita": "GDP",
-        "HDI": "HDI",
+        "Human Development Index": "HDI",
         "Internet": "Internet",
         "Agriculture": "Agri",
-        "Poverty": "Poverty"
     }
 
     selected_label = st.selectbox("Select Metric", list(metric_labels.keys()))

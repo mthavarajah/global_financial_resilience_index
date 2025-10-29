@@ -6,11 +6,10 @@ def load_merged_data():
     df.rename(columns={
         "Human Development Index": "HDI",
         "Individuals using the Internet (% of population)": "Internet Usage (%)",
-        "share_employed_agri": "Labor in Agriculture (%)",
-        "Population (historical)": "Population"
+        "share_employed_agri": "Labor in Agriculture (%)"
     }, inplace=True)
 
-    numeric_cols = ["GDP per capita", "HDI", "Internet Usage (%)", "Labor in Agriculture (%)", "Population"]
+    numeric_cols = ["GDP per capita", "HDI", "Internet Usage (%)", "Labor in Agriculture (%)"]
     for col in numeric_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
@@ -369,7 +368,6 @@ def load_merged_data():
         'Zambia': (-13.1339, 27.8493),
         'Zimbabwe': (-19.0154, 29.1549)
     }
-
 
     df["Latitude"] = df["Entity"].map(lambda x: latlon_dict.get(x, (0, 0))[0])
     df["Longitude"] = df["Entity"].map(lambda x: latlon_dict.get(x, (0, 0))[1])
