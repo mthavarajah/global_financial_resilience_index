@@ -1,0 +1,32 @@
+{
+  "chart": {
+    "title": "Share of the labor force employed in agriculture",
+    "subtitle": "Agriculture includes the cultivation of crops and livestock production, as well as forestry, hunting, and fishing. Employment includes anyone engaged in any activity to produce goods or services for pay or profit.",
+    "citation": "Our World in Data based on International Labor Organization (via the World Bank) and historical sources",
+    "originalChartUrl": "https://ourworldindata.org/grapher/share-of-the-labor-force-employed-in-agriculture?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "Colombia",
+      "China",
+      "Jamaica",
+      "Italy",
+      "Poland",
+      "France",
+      "Netherlands"
+    ]
+  },
+  "columns": {
+    "share_employed_agri": {
+      "titleShort": "Share of the labor force employed in agriculture",
+      "titleLong": "Share of the labor force employed in agriculture",
+      "unit": "",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 312261,
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “Share of the labor force employed in agriculture” [dataset]. Our World in Data based on International Labor Organization (via the World Bank) and historical sources [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/312261.metadata.json"
+    }
+  },
+  "dateDownloaded": "2025-10-29",
+  "activeFilters": {}
+}
