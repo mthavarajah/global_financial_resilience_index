@@ -5,7 +5,6 @@ from sklearn.linear_model import LinearRegression
 import plotly.express as px
 
 def calculate_trend_slope(x, y):
-    """Compute slope of trend line via linear regression."""
     if len(x) < 2:
         return 0
     model = LinearRegression()
@@ -13,12 +12,10 @@ def calculate_trend_slope(x, y):
     return model.coef_[0]
 
 def app():
-    st.title("📋 GFRI Data Table with Stats & Trend")
+    st.title("📋 GFRI Data Table")
 
-    # Load dataset
     df = pd.read_csv("datasets/merged_data.csv")
 
-    # UI Controls
     countries = st.multiselect("Select Countries", df['Entity'].unique(), 
                                default=["Canada", "United States"])
     metric = st.selectbox("Select Metric", ["GDP", "HDI", "Internet", "Agri", "Poverty"])
@@ -26,12 +23,10 @@ def app():
                       int(df['Year'].min()), int(df['Year'].max()),
                       (int(df['Year'].min()), int(df['Year'].max())))
 
-    # Filter data
     df_filtered = df[(df['Entity'].isin(countries)) & 
                      (df['Year'] >= years[0]) & 
                      (df['Year'] <= years[1])]
 
-    # Prepare summary stats
     summary_list = []
     for country in countries:
         df_country = df_filtered[df_filtered['Entity'] == country]
