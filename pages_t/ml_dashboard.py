@@ -31,7 +31,7 @@ def app():
 
     df_input = df[(df['Entity'].isin(countries)) & (df['Year'] == year)]
 
-    st.subheader("Predicted Financial Resilience Index (FRI) Score")
+    st.subheader("Financial Resilience Index (FRI) Score")
 
     X_reg = df_input[reg_model.features]
     preds = reg_model.predict(X_reg)
