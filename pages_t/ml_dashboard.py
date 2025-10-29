@@ -15,7 +15,7 @@ def app():
     df = pd.read_csv("datasets/merged_data.csv")
     df = df.dropna(subset=["Lat", "Lon"])
 
-    st.title("📊 Financial Resilience Index (FRI) Dashboard")
+    st.title("📊 Financial Resilience Index (FRI)")
 
     countries = st.multiselect(
         "Select Countries", 
